@@ -13,7 +13,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import amadeus.java.client.JsonUtil;
+import amadeus.java.client.utils.JsonUtil;
 
 @Service
 public class AmadeusRestTemplateClient {

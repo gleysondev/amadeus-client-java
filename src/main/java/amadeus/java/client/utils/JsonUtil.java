@@ -1,4 +1,4 @@
-package amadeus.java.client;
+package amadeus.java.client.utils;
 
 import java.io.File;
 import java.io.FileWriter;
