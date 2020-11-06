@@ -17,6 +17,7 @@ public class AmadeusClientJavaApplication {
     public CommandLineRunner run( AmadeusRestTemplateClient c) {
         return args -> {
         	c.login();
+        	c.ofertasObject();
         };
     }
 

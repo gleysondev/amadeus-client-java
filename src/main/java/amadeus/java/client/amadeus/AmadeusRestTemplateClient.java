@@ -5,6 +5,7 @@ import java.io.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -44,12 +45,21 @@ public class AmadeusRestTemplateClient {
 
 		ResponseEntity<Credencial> response = restTemplate.postForEntity( ROOT_URI + "/v1/security/oauth2/token", request , Credencial.class );
 		credencial = response.getBody();
+		
 	}
 	
-	public Object ofertasObject() {
-		ResponseEntity<Object> response = restTemplate.getForEntity(ROOT_URI + "/v2/shopping/flight-offers?originLocationCode=SYD&destinationLocationCode=BKK&departureDate=2020-12-01&returnDate=2020-12-05&adults=1&max=2", Object.class);
+	public void ofertasObject() {
 		
+		String url = ROOT_URI + "/v2/shopping/flight-offers?originLocationCode=SYD&destinationLocationCode=BKK&departureDate=2020-12-01&returnDate=2020-12-05&adults=1&max=2";
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.add(HttpHeaders.AUTHORIZATION, credencial.getToken());
+
+		HttpEntity entity = new HttpEntity(headers);
 		try {
+		
+			ResponseEntity<Object> response = restTemplate.exchange(url, HttpMethod.GET, entity, Object.class);
+		
 			//convertendo em String a resposta
 			String reposta = jsonUtil.toString(response.getBody());
 		
@@ -60,8 +70,7 @@ public class AmadeusRestTemplateClient {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return response;
+
 	}
 
 }

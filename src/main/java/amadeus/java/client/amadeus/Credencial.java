@@ -9,7 +9,7 @@ public class Credencial {
 		
 	}
 	public void setToken(String token) {
-		this.token = token;
+		this.token = "Bearer " + token;
 	}
 	public String getToken() {
 		return token;
