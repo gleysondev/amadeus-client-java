@@ -54,6 +54,8 @@ public class AmadeusRestTemplateClient {
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.add(HttpHeaders.AUTHORIZATION, credencial.getToken());
+		
+		System.out.println(credencial.getToken());
 
 		HttpEntity entity = new HttpEntity(headers);
 		try {
