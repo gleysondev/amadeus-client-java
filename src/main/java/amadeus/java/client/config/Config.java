@@ -1,5 +1,7 @@
 package amadeus.java.client.config;
 
+import java.io.File;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -26,5 +28,13 @@ public class Config {
 	@Bean
 	public Credencial credencial() {
 		return new Credencial();
+	}
+	
+	@Bean
+	public File storage() {
+		File diretorio =new File("/temp/storage");
+		if(!diretorio.exists())
+			diretorio.mkdirs();
+		return diretorio;
 	}
 }

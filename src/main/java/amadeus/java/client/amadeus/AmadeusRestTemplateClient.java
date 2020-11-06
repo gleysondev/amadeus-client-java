@@ -29,6 +29,9 @@ public class AmadeusRestTemplateClient {
 	@Autowired
 	private MyKey key;
 	
+	@Autowired
+	private File storage;
+	
 	final String ROOT_URI = "https://test.api.amadeus.com/";
 	
 	public void login() {
@@ -66,7 +69,7 @@ public class AmadeusRestTemplateClient {
 			String reposta = jsonUtil.toString(response.getBody());
 		
 			//salvando em disco o json
-			jsonUtil.toFile(response.getBody(),new File("c:\\dev\\lista-ofertas.json"));
+			jsonUtil.toFile(response.getBody(),new File(storage, "lista-ofertas.json"));
 			
 			System.out.println("FIM");
 		}catch (Exception e) {
